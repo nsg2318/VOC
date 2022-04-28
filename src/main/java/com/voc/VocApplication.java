@@ -1,4 +1,4 @@
-package com.voc.voc;
+package com.voc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

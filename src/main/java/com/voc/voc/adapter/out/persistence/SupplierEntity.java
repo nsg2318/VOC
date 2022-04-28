@@ -1,18 +1,16 @@
-package com.voc.voc.data.jpa.entities;
+package com.voc.voc.adapter.out.persistence;
 
-import com.voc.voc.data.jpa.BaseTimeEntity;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "supplier")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "vendor")
-public class VendorEntity extends BaseTimeEntity {
+public class SupplierEntity extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +24,6 @@ public class VendorEntity extends BaseTimeEntity {
 
     @NotNull
     private String managerNumber;
+
 
 }

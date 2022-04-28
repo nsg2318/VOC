@@ -1,5 +1,4 @@
-package com.voc.voc.data.jpa;
-
+package com.voc.voc.adapter.out.persistence;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseTimeEntity {
+public abstract class BaseTimeEntity {
 
     @CreatedDate
     private LocalDateTime createdDate;
