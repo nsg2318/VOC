@@ -1,7 +1,9 @@
-package com.voc.voc.adapter.out.persistence;
+package com.voc.voc.adapter.out.persistence.entity;
 
 
 import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,8 +11,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "supplier")
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SupplierEntity extends BaseTimeEntity{
+public class SupplierEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +28,10 @@ public class SupplierEntity extends BaseTimeEntity{
     @NotNull
     private String managerNumber;
 
-
+    @Builder
+    public SupplierEntity(String vendorName, String managerName, String managerNumber) {
+        this.vendorName = vendorName;
+        this.managerName = managerName;
+        this.managerNumber = managerNumber;
+    }
 }

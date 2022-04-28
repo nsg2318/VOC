@@ -1,4 +1,4 @@
-package com.voc.voc.adapter.out.persistence;
+package com.voc.voc.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
