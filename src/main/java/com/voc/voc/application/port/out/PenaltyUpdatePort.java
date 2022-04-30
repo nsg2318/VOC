@@ -4,4 +4,6 @@ public interface PenaltyUpdatePort {
     void updateRead(Long penaltyIndex);
 
     void updateObjection(Long penaltyIndex);
+
+    void updateObjection(Long penaltyIndex, String objectionReason);
 }

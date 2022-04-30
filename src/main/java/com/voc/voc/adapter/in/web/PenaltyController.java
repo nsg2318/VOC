@@ -1,5 +1,6 @@
 package com.voc.voc.adapter.in.web;
 
+import com.voc.voc.adapter.in.web.dto.PenaltyObjectionDto;
 import com.voc.voc.adapter.in.web.dto.PenaltyRegistrationDto;
 import com.voc.voc.application.port.in.PenaltyRegistrationUseCase;
 import com.voc.voc.application.port.in.PenaltyUpdateUseCase;
@@ -17,22 +18,29 @@ public class PenaltyController {
 
     @PostMapping
     public ResponseEntity<PenaltyRegistrationDto.Response> registration(
-            @RequestBody PenaltyRegistrationDto.Request request){
+            @RequestBody PenaltyRegistrationDto.Request request) {
 
         PenaltyRegistrationDto.Response result = penaltyRegistrationUseCase.registration(request);
         return ResponseEntity.ok(result);
 
     }
 
+    @PostMapping("/objection/{penaltyIndex}")
+    public void objectionRequest(
+            @PathVariable Long penaltyIndex,
+            @RequestBody PenaltyObjectionDto.Request request) {
+        penaltyUpdateUseCase.updateObjection(penaltyIndex, request);
+    }
+
     @PatchMapping("/read/{penaltyIndex}")
     public void updateRead(
-            @PathVariable Long penaltyIndex){
+            @PathVariable Long penaltyIndex) {
         penaltyUpdateUseCase.updateRead(penaltyIndex);
     }
 
     @PatchMapping("/objection/{penaltyIndex}")
     public void agreeFault(
-            @PathVariable Long penaltyIndex){
+            @PathVariable Long penaltyIndex) {
         penaltyUpdateUseCase.updateObjection(penaltyIndex);
     }
 }
@@ -40,4 +48,4 @@ public class PenaltyController {
 
 // TODO: 2022/04/30  test
 // TODO: 2022/04/30  Exception handling
-// TODO: 2022/04/30 페널티 기능 - 이의제기 true, 리즌등록, CLOSED
+// TODO: 2022/04/30  리즌등록

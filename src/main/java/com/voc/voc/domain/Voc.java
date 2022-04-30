@@ -32,7 +32,7 @@ public class Voc {
     }
 
     public static Voc newInstance(Supplier supplier, Carrier carrier, Imputation imputation, String reason, Boolean claim) {
-        return new Voc(Identity.nothing(), VocStatus.OPEN, supplier, carrier, null, imputation, reason, claim);
+        return new Voc(Identity.nothing(), VocStatus.CLOSED, supplier, carrier, null, imputation, reason, claim);
     }
 
 }

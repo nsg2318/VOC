@@ -1,6 +1,7 @@
 package com.voc.voc.adapter.out.persistence;
 
 import com.voc.voc.adapter.out.persistence.entity.VocEntity;
+import com.voc.voc.adapter.out.persistence.status.VocStatus;
 import com.voc.voc.application.port.out.FindVocPort;
 import com.voc.voc.application.port.out.VocRegistrationPort;
 import com.voc.voc.application.port.out.VocUpdatePort;
@@ -40,9 +41,9 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
     }
 
     @Override
-    public void updateStatus(Voc voc) {
+    public void updateStatus(Voc voc,VocStatus vocStatus) {
         VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
-        vocEntity.updateStatus();
+        vocEntity.updateStatus(vocStatus);
     }
 }

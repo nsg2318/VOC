@@ -66,4 +66,8 @@ public class PenaltyEntity extends BaseTimeEntity {
     public void updateObjection() {
         this.objection = Boolean.TRUE;
     }
+
+    public void updateObjection(String objectionReason) {
+        this.objectionReason = objectionReason;
+    }
 }

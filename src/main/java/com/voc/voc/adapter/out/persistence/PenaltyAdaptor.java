@@ -17,6 +17,7 @@ import java.security.InvalidParameterException;
 public class PenaltyAdaptor implements PenaltyRegistrationPort, FindPenaltyPort, PenaltyUpdatePort {
 
     private final PenaltyRepository penaltyRepository;
+
     @Override
     public Penalty persist(Penalty penalty) {
         PenaltyEntity save = penaltyRepository.save(PenaltyEntity.from(penalty));
@@ -24,23 +25,31 @@ public class PenaltyAdaptor implements PenaltyRegistrationPort, FindPenaltyPort,
     }
 
     @Override
-    public Penalty findById(Long id) {
-        PenaltyEntity penaltyEntity = penaltyRepository.findById(id)
-                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+    public Penalty findById(Long penaltyIndex) {
+        PenaltyEntity penaltyEntity = findOrThrowException(penaltyIndex);
         return penaltyEntity.fromThis();
     }
 
     @Override
     public void updateRead(Long penaltyIndex) {
-        PenaltyEntity penaltyEntity = penaltyRepository.findById(penaltyIndex)
-                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        PenaltyEntity penaltyEntity = findOrThrowException(penaltyIndex);
         penaltyEntity.updateRead();
     }
 
     @Override
     public void updateObjection(Long penaltyIndex) {
-        PenaltyEntity penaltyEntity = penaltyRepository.findById(penaltyIndex)
-                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        PenaltyEntity penaltyEntity = findOrThrowException(penaltyIndex);
         penaltyEntity.updateObjection();
+    }
+
+    @Override
+    public void updateObjection(Long penaltyIndex, String objectionReason) {
+        PenaltyEntity penaltyEntity = findOrThrowException(penaltyIndex);
+        penaltyEntity.updateObjection(objectionReason);
+    }
+
+    private PenaltyEntity findOrThrowException(Long penaltyIndex) {
+        return penaltyRepository.findById(penaltyIndex)
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
     }
 }

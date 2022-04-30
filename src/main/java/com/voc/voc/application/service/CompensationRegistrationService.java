@@ -1,6 +1,7 @@
 package com.voc.voc.application.service;
 
 import com.voc.voc.adapter.in.web.dto.CompensationRegistrationDto;
+import com.voc.voc.adapter.out.persistence.status.VocStatus;
 import com.voc.voc.application.port.in.CompensationRegistrationUseCase;
 import com.voc.voc.application.port.out.CompensationRegistrationPort;
 import com.voc.voc.application.port.out.FindVocPort;
@@ -29,6 +30,7 @@ public class CompensationRegistrationService implements CompensationRegistration
 
         //Voc 내 Compensation 정보 업데이트
         vocUpdatePort.updateCompensation(voc, result);
+        vocUpdatePort.updateStatus(voc, VocStatus.OPEN);
 
 
         return new CompensationRegistrationDto.Response(result);

@@ -104,7 +104,7 @@ public class VocEntity extends BaseTimeEntity {
                 claim);
     }
 
-    public void updateStatus() {
-        this.vocStatus = VocStatus.CLOSED;
+    public void updateStatus(VocStatus vocStatus) {
+        this.vocStatus = vocStatus;
     }
 }
