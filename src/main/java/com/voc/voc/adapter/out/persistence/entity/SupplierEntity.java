@@ -2,7 +2,10 @@ package com.voc.voc.adapter.out.persistence.entity;
 
 
 import com.voc.voc.domain.Supplier;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,9 +30,10 @@ public class SupplierEntity {
     @NotNull
     private String managerNumber;
 
-    public static SupplierEntity from(Supplier supplier){
+    public static SupplierEntity from(Supplier supplier) {
         return new SupplierEntity(supplier.getSupplierId().getId(), supplier.getVendorName(), supplier.getManagerName(), supplier.getManagerNumber());
     }
+
     public Supplier fromThis() {
         return new Supplier(
                 new Supplier.SupplierId(id), vendorName, managerName, managerNumber);
