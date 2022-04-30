@@ -36,4 +36,11 @@ public class PenaltyAdaptor implements PenaltyRegistrationPort, FindPenaltyPort,
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
         penaltyEntity.updateRead();
     }
+
+    @Override
+    public void updateObjection(Long penaltyIndex) {
+        PenaltyEntity penaltyEntity = penaltyRepository.findById(penaltyIndex)
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        penaltyEntity.updateObjection();
+    }
 }

@@ -33,10 +33,16 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
     }
 
     @Override
-    public Voc updateCompensation(Voc voc, Compensation compensation) {
+    public void updateCompensation(Voc voc, Compensation compensation) {
         VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
-        VocEntity save = vocEntity.updateCompensation(compensation);
-        return save.fromThisWithCompensation();
+        vocEntity.updateCompensation(compensation);
+    }
+
+    @Override
+    public void updateStatus(Voc voc) {
+        VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        vocEntity.updateStatus();
     }
 }

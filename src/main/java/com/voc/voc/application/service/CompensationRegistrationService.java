@@ -4,7 +4,6 @@ import com.voc.voc.adapter.in.web.dto.CompensationRegistrationDto;
 import com.voc.voc.application.port.in.CompensationRegistrationUseCase;
 import com.voc.voc.application.port.out.CompensationRegistrationPort;
 import com.voc.voc.application.port.out.FindVocPort;
-import com.voc.voc.application.port.out.VocRegistrationPort;
 import com.voc.voc.application.port.out.VocUpdatePort;
 import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Voc;
@@ -30,7 +29,6 @@ public class CompensationRegistrationService implements CompensationRegistration
 
         //Voc 내 Compensation 정보 업데이트
         vocUpdatePort.updateCompensation(voc, result);
-
 
 
         return new CompensationRegistrationDto.Response(result);

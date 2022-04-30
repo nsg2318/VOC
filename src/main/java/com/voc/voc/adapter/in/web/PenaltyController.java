@@ -29,6 +29,12 @@ public class PenaltyController {
             @PathVariable Long penaltyIndex){
         penaltyUpdateUseCase.updateRead(penaltyIndex);
     }
+
+    @PatchMapping("/objection/{penaltyIndex}")
+    public void agreeFault(
+            @PathVariable Long penaltyIndex){
+        penaltyUpdateUseCase.updateObjection(penaltyIndex);
+    }
 }
 
 

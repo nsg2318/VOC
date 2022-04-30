@@ -4,5 +4,7 @@ import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Voc;
 
 public interface VocUpdatePort {
-    Voc updateCompensation(Voc voc, Compensation compensation);
+    void updateCompensation(Voc voc, Compensation compensation);
+
+    void updateStatus(Voc voc);
 }

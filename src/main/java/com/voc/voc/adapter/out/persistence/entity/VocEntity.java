@@ -76,9 +76,8 @@ public class VocEntity extends BaseTimeEntity {
                 voc.getClaim());
     }
 
-    public VocEntity updateCompensation(Compensation compensation){
+    public void updateCompensation(Compensation compensation){
         this.compensationEntity = CompensationEntity.from(compensation);
-        return this;
     }
 
     public Voc fromThisWithoutCompensation() {
@@ -103,5 +102,9 @@ public class VocEntity extends BaseTimeEntity {
                 imputation,
                 reason,
                 claim);
+    }
+
+    public void updateStatus() {
+        this.vocStatus = VocStatus.CLOSED;
     }
 }
