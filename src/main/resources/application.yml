@@ -17,3 +17,5 @@ spring:
         format_sql: false
     hibernate:
       ddl-auto: create
+    defer-datasource-initialization: true
+
