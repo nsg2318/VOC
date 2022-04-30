@@ -46,6 +46,8 @@ public class PenaltyController {
 }
 
 
-// TODO: 2022/04/30  test
-// TODO: 2022/04/30  Exception handling
-// TODO: 2022/04/30  리즌등록
+// TODO: 2022/04/30 test
+// TODO: 2022/04/30 Exception handling
+// TODO: 2022/05/01 남은 기능구현
+// TODO: 2022/05/01 소스내 주석
+// TODO: 2022/05/01 Readme, 다이어그램, ERD 작성 및 캡처
