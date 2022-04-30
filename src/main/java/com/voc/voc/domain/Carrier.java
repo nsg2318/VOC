@@ -15,15 +15,6 @@ public class Carrier {
     String name;
     String company;
 
-
-    public CarrierEntity toEntity(){
-        return CarrierEntity.builder()
-                .id(this.carrierId.getId())
-                .name(this.name)
-                .company(this.company)
-                .build();
-    }
-
     public Carrier(CarrierEntity carrierEntity){
         this.carrierId = new CarrierId(carrierEntity.getId());
         this.name = carrierEntity.getName();

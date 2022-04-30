@@ -1,10 +1,8 @@
 package com.voc.voc.adapter.out.persistence.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.voc.voc.domain.Carrier;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "carrier")
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CarrierEntity {
 
@@ -25,10 +24,7 @@ public class CarrierEntity {
     @NotNull
     private String company;
 
-    @Builder
-    public CarrierEntity(Long id, String name, String company) {
-        this.id = id;
-        this.name = name;
-        this.company = company;
+    public static CarrierEntity from(Carrier carrier) {
+        return new CarrierEntity(carrier.getCarrierId().getId(), carrier.getName(), carrier.getCompany());
     }
 }

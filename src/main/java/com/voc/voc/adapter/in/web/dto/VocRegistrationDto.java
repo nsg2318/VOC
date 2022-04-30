@@ -15,6 +15,7 @@ public class VocRegistrationDto {
         private Long carrierIndex;
         private Imputation imputation;
         private String reason;
+        private Boolean claim;
     }
 
     @Getter

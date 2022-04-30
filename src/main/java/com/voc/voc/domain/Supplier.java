@@ -24,15 +24,6 @@ public class Supplier {
         this.managerNumber = supplierEntity.getManagerNumber();
     }
 
-    public SupplierEntity toEntity() {
-        return SupplierEntity.builder()
-                .id(this.supplierId.getId())
-                .vendorName(this.vendorName)
-                .managerName(this.managerName)
-                .managerNumber(this.managerNumber)
-                .build();
-    }
-
     @AllArgsConstructor
     @Getter
     public static class SupplierId {

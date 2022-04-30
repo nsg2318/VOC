@@ -1,10 +1,8 @@
 package com.voc.voc.adapter.out.persistence.entity;
 
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.voc.voc.domain.Supplier;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +10,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "supplier")
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SupplierEntity {
 
@@ -28,11 +27,7 @@ public class SupplierEntity {
     @NotNull
     private String managerNumber;
 
-    @Builder
-    public SupplierEntity(Long id,String vendorName, String managerName, String managerNumber) {
-        this.id = id;
-        this.vendorName = vendorName;
-        this.managerName = managerName;
-        this.managerNumber = managerNumber;
+    public static SupplierEntity from(Supplier supplier){
+        return new SupplierEntity(supplier.getSupplierId().getId(), supplier.getVendorName(), supplier.getManagerName(), supplier.getManagerNumber());
     }
 }
