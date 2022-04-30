@@ -14,22 +14,17 @@ import lombok.Value;
 @AllArgsConstructor
 public class Supplier {
 
-    SupplierId supplierId;
+    Identity supplierId;
     String vendorName;
     String managerName;
     String managerNumber;
 
 
     public Supplier(SupplierEntity supplierEntity) {
-        this.supplierId = new SupplierId(supplierEntity.getId());
+        this.supplierId = new Identity(supplierEntity.getId());
         this.vendorName = supplierEntity.getVendorName();
         this.managerName = supplierEntity.getManagerName();
         this.managerNumber = supplierEntity.getManagerNumber();
     }
 
-    @AllArgsConstructor
-    @Getter
-    public static class SupplierId {
-        Long id;
-    }
 }

@@ -2,6 +2,7 @@ package com.voc.voc.adapter.out.persistence.entity;
 
 
 import com.voc.voc.domain.Carrier;
+import com.voc.voc.domain.Identity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +29,11 @@ public class CarrierEntity {
     private String company;
 
     public static CarrierEntity from(Carrier carrier) {
-        return new CarrierEntity(carrier.getCarrierId().getId(), carrier.getName(), carrier.getCompany());
+        return new CarrierEntity(carrier.getCarrierId().getNumber(), carrier.getName(), carrier.getCompany());
     }
 
     public Carrier fromThis() {
         return new Carrier(
-                new Carrier.CarrierId(id), name, company);
+                new Identity(id), name, company);
     }
 }

@@ -13,15 +13,9 @@ import lombok.Value;
 @AllArgsConstructor
 public class Compensation {
 
-    CompensationId compensationId;
+    Identity compensationId;
     Voc voc;
     String amount;
-
-    @AllArgsConstructor
-    @Getter
-    public static class CompensationId {
-        Long id;
-    }
 
 
 }

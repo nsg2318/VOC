@@ -14,19 +14,14 @@ import lombok.Value;
 @AllArgsConstructor
 public class Carrier {
 
-    CarrierId carrierId;
+    Identity carrierId;
     String name;
     String company;
 
     public Carrier(CarrierEntity carrierEntity){
-        this.carrierId = new CarrierId(carrierEntity.getId());
+        this.carrierId = new Identity(carrierEntity.getId());
         this.name = carrierEntity.getName();
         this.company = carrierEntity.getCompany();
     }
 
-    @AllArgsConstructor
-    @Getter
-    public static class CarrierId{
-        Long id;
-    }
 }

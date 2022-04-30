@@ -14,7 +14,7 @@ import lombok.Value;
 @AllArgsConstructor
 public class Voc {
 
-    VocId vocId;
+    Identity vocId;
     VocStatus vocStatus;
     Supplier supplier;
     Carrier carrier;
