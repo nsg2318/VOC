@@ -4,6 +4,7 @@ package com.voc.voc.adapter.out.persistence.entity;
 import com.voc.voc.adapter.BaseTimeEntity;
 import com.voc.voc.adapter.out.persistence.status.Imputation;
 import com.voc.voc.adapter.out.persistence.status.VocStatus;
+import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Identity;
 import com.voc.voc.domain.Voc;
 import lombok.AccessLevel;
@@ -55,7 +56,7 @@ public class VocEntity extends BaseTimeEntity {
     @NotNull
     private Boolean claim;
 
-    public static VocEntity from(Voc voc) {
+    public static VocEntity fromWithoutCompensation(Voc voc) {
         return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
                 SupplierEntity.from(voc.getSupplier()),
                 CarrierEntity.from(voc.getCarrier()),
@@ -65,7 +66,21 @@ public class VocEntity extends BaseTimeEntity {
                 voc.getClaim());
     }
 
-    public Voc fromThis() {
+    public static VocEntity fromWithCompensation(Voc voc, Compensation compensation){
+        return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
+                SupplierEntity.from(voc.getSupplier()),
+                CarrierEntity.from(voc.getCarrier()),
+                CompensationEntity.from(compensation),
+                voc.getImputation(),
+                voc.getReason(),
+                voc.getClaim());
+    }
+
+    public void updateCompensation(Compensation compensation){
+        this.compensationEntity = CompensationEntity.from(compensation);
+    }
+
+    public Voc fromThisWithoutCompensation() {
         return new Voc(
                 new Identity(id),
                 vocStatus,
@@ -75,6 +90,21 @@ public class VocEntity extends BaseTimeEntity {
                 imputation,
                 reason,
                 claim);
+    }
 
+    public Voc fromThisWithCompensation() {
+        return new Voc(
+                new Identity(id),
+                vocStatus,
+                supplierEntity.fromThis(),
+                carrierEntity.fromThis(),
+                compensationEntity.fromThis(),
+                imputation,
+                reason,
+                claim);
+    }
+
+    public void updateStatus(VocStatus vocStatus) {
+        this.vocStatus = vocStatus;
     }
 }

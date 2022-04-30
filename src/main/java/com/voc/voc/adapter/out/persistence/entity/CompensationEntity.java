@@ -32,11 +32,11 @@ public class CompensationEntity extends BaseTimeEntity {
     String amount;
 
     public static CompensationEntity from(Compensation compensation) {
-        return new CompensationEntity(convertId(compensation.getCompensationId()), VocEntity.from(compensation.getVoc()), compensation.getAmount());
+        return new CompensationEntity(convertId(compensation.getCompensationId()), VocEntity.fromWithoutCompensation(compensation.getVoc()), compensation.getAmount());
     }
 
     public Compensation fromThis() {
-        return new Compensation(new Identity(id), vocEntity.fromThis(), amount);
+        return new Compensation(new Identity(id), vocEntity.fromThisWithoutCompensation(), amount);
     }
 
 }
