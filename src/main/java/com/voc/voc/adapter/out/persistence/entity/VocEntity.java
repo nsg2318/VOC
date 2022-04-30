@@ -56,7 +56,7 @@ public class VocEntity extends BaseTimeEntity {
     @NotNull
     private Boolean claim;
 
-    public static VocEntity from(Voc voc) {
+    public static VocEntity fromWithoutCompensation(Voc voc) {
         return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
                 SupplierEntity.from(voc.getSupplier()),
                 CarrierEntity.from(voc.getCarrier()),
@@ -81,7 +81,7 @@ public class VocEntity extends BaseTimeEntity {
         return this;
     }
 
-    public Voc fromThis() {
+    public Voc fromThisWithoutCompensation() {
         return new Voc(
                 new Identity(id),
                 vocStatus,
