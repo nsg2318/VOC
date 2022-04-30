@@ -18,4 +18,7 @@ public class Compensation {
     String amount;
 
 
+    public static Compensation newInstance(Voc voc, String amount){
+        return new Compensation(Identity.nothing(),voc,amount);
+    }
 }

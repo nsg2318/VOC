@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static com.voc.voc.adapter.out.persistence.entity.IdConverter.*;
+
 @Entity
 @Table(name = "compensation")
 @Getter
@@ -30,7 +32,7 @@ public class CompensationEntity extends BaseTimeEntity {
     String amount;
 
     public static CompensationEntity from(Compensation compensation) {
-        return new CompensationEntity(compensation.getCompensationId().getNumber(), VocEntity.from(compensation.getVoc()), compensation.getAmount());
+        return new CompensationEntity(convertId(compensation.getCompensationId()), VocEntity.from(compensation.getVoc()), compensation.getAmount());
     }
 
     public Compensation fromThis() {

@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static com.voc.voc.adapter.out.persistence.entity.IdConverter.*;
+
 @Entity
 @Table(name = "carrier")
 @Getter
@@ -29,7 +31,7 @@ public class CarrierEntity {
     private String company;
 
     public static CarrierEntity from(Carrier carrier) {
-        return new CarrierEntity(carrier.getCarrierId().getNumber(), carrier.getName(), carrier.getCompany());
+        return new CarrierEntity(convertId(carrier.getCarrierId()), carrier.getName(), carrier.getCompany());
     }
 
     public Carrier fromThis() {

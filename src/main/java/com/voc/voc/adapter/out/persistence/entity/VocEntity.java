@@ -15,6 +15,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import static com.voc.voc.adapter.out.persistence.entity.IdConverter.*;
+
 @Entity
 @Table(name = "voc")
 @Getter
@@ -54,7 +56,7 @@ public class VocEntity extends BaseTimeEntity {
     private Boolean claim;
 
     public static VocEntity from(Voc voc) {
-        return new VocEntity(voc.getVocId().getNumber(), voc.getVocStatus(),
+        return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
                 SupplierEntity.from(voc.getSupplier()),
                 CarrierEntity.from(voc.getCarrier()),
                 null,
