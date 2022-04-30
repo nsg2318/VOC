@@ -27,7 +27,9 @@ public class CompensationRegistrationService implements CompensationRegistration
 
         Compensation compensation = Compensation.newInstance(voc, request.getAmount());
         Compensation result = compensationRegistrationPort.persist(compensation);
-        Voc voc1 = vocUpdatePort.updateCompensation(voc, result);
+
+        //Voc 내 Compensation 정보 업데이트
+        vocUpdatePort.updateCompensation(voc, result);
 
 
 
