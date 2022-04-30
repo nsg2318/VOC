@@ -11,21 +11,21 @@ import lombok.Value;
 @AllArgsConstructor
 public class Carrier {
 
-    CarrierId id;
+    CarrierId carrierId;
     String name;
     String company;
 
 
     public CarrierEntity toEntity(){
         return CarrierEntity.builder()
-                .id(this.id.getId())
+                .id(this.carrierId.getId())
                 .name(this.name)
                 .company(this.company)
                 .build();
     }
 
     public Carrier(CarrierEntity carrierEntity){
-        this.id = new CarrierId(carrierEntity.getId());
+        this.carrierId = new CarrierId(carrierEntity.getId());
         this.name = carrierEntity.getName();
         this.company = carrierEntity.getCompany();
     }

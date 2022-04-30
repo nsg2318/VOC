@@ -11,14 +11,14 @@ import lombok.Value;
 @AllArgsConstructor
 public class Supplier {
 
-    SupplierId id;
+    SupplierId supplierId;
     String vendorName;
     String managerName;
     String managerNumber;
 
 
     public Supplier(SupplierEntity supplierEntity) {
-        this.id = new SupplierId(supplierEntity.getId());
+        this.supplierId = new SupplierId(supplierEntity.getId());
         this.vendorName = supplierEntity.getVendorName();
         this.managerName = supplierEntity.getManagerName();
         this.managerNumber = supplierEntity.getManagerNumber();
@@ -26,7 +26,7 @@ public class Supplier {
 
     public SupplierEntity toEntity() {
         return SupplierEntity.builder()
-                .id(this.id.getId())
+                .id(this.supplierId.getId())
                 .vendorName(this.vendorName)
                 .managerName(this.managerName)
                 .managerNumber(this.managerNumber)

@@ -20,19 +20,24 @@ public class Voc {
     Imputation imputation;
     VocStatus vocStatus;
     String reason;
+    Boolean claim;
+    Compensation compensation;
 
     @Builder
-    public Voc(VocId id, Supplier supplier, Carrier carrier, Imputation imputation, VocStatus vocStatus, String reason) {
+    public Voc(VocId id, Supplier supplier, Carrier carrier, Imputation imputation, VocStatus vocStatus, String reason, Boolean claim, Compensation compensation) {
         this.id = id;
         this.supplier = supplier;
         this.carrier = carrier;
         this.imputation = imputation;
         this.vocStatus = vocStatus;
         this.reason = reason;
+        this.claim = claim;
+        this.compensation = compensation;
     }
 
+
     @AllArgsConstructor
-    public static class VocId{
+    public static class VocId {
         Long id;
     }
 
