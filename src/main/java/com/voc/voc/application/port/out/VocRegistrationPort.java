@@ -1,9 +1,9 @@
 package com.voc.voc.application.port.out;
 
-import com.voc.voc.adapter.out.persistence.entity.VocEntity;
+import com.voc.voc.domain.Voc;
 
 public interface VocRegistrationPort {
 
-    VocEntity persist(VocEntity vocEntity);
+    Voc persist(Voc voc);
 
 }

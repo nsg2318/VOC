@@ -30,4 +30,8 @@ public class SupplierEntity {
     public static SupplierEntity from(Supplier supplier){
         return new SupplierEntity(supplier.getSupplierId().getId(), supplier.getVendorName(), supplier.getManagerName(), supplier.getManagerNumber());
     }
+    public Supplier fromThis() {
+        return new Supplier(
+                new Supplier.SupplierId(id), vendorName, managerName, managerNumber);
+    }
 }

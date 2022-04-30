@@ -27,4 +27,9 @@ public class CarrierEntity {
     public static CarrierEntity from(Carrier carrier) {
         return new CarrierEntity(carrier.getCarrierId().getId(), carrier.getName(), carrier.getCompany());
     }
+
+    public Carrier fromThis(){
+        return new Carrier(
+                new Carrier.CarrierId(id), name, company);
+    }
 }

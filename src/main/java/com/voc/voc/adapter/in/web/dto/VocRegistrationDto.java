@@ -3,6 +3,7 @@ package com.voc.voc.adapter.in.web.dto;
 
 import com.voc.voc.adapter.out.persistence.entity.VocEntity;
 import com.voc.voc.adapter.out.persistence.status.Imputation;
+import com.voc.voc.domain.Voc;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -21,6 +22,6 @@ public class VocRegistrationDto {
     @Getter
     @AllArgsConstructor
     public static class Response {
-        private VocEntity vocEntity;
+        private Voc voc;
     }
 }

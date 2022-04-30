@@ -4,6 +4,7 @@ package com.voc.voc.adapter.out.persistence.entity;
 import com.voc.voc.adapter.BaseTimeEntity;
 import com.voc.voc.adapter.out.persistence.status.Imputation;
 import com.voc.voc.adapter.out.persistence.status.VocStatus;
+import com.voc.voc.domain.Voc;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -51,4 +52,25 @@ public class VocEntity extends BaseTimeEntity {
     @NotNull
     private Boolean claim;
 
+    public static VocEntity from (Voc voc){
+        return new VocEntity(null,voc.getVocStatus(),
+                SupplierEntity.from(voc.getSupplier()),
+                CarrierEntity.from(voc.getCarrier()),
+                null,
+                voc.getImputation(),
+                voc.getReason(),
+                voc.getClaim());
+    }
+    public Voc fromThis(){
+        return new Voc(
+                new Voc.VocId(id),
+                vocStatus,
+                supplierEntity.fromThis(),
+                carrierEntity.fromThis(),
+                null,
+                imputation,
+                reason,
+                claim);
+
+    }
 }
