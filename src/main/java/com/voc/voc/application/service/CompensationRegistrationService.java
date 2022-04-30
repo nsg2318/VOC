@@ -4,6 +4,8 @@ import com.voc.voc.adapter.in.web.dto.CompensationRegistrationDto;
 import com.voc.voc.application.port.in.CompensationRegistrationUseCase;
 import com.voc.voc.application.port.out.CompensationRegistrationPort;
 import com.voc.voc.application.port.out.FindVocPort;
+import com.voc.voc.application.port.out.VocRegistrationPort;
+import com.voc.voc.application.port.out.VocUpdatePort;
 import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Voc;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ public class CompensationRegistrationService implements CompensationRegistration
 
     private final FindVocPort findVocPort;
     private final CompensationRegistrationPort compensationRegistrationPort;
+    private final VocUpdatePort vocUpdatePort;
 
     @Override
     public CompensationRegistrationDto.Response registration(CompensationRegistrationDto.Request request) {
@@ -24,6 +27,9 @@ public class CompensationRegistrationService implements CompensationRegistration
 
         Compensation compensation = Compensation.newInstance(voc, request.getAmount());
         Compensation result = compensationRegistrationPort.persist(compensation);
+        Voc voc1 = vocUpdatePort.updateCompensation(voc, result);
+
+
 
         return new CompensationRegistrationDto.Response(result);
     }
