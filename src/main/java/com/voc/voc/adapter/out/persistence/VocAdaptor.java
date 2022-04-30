@@ -15,6 +15,8 @@ public class VocAdaptor implements VocRegistrationPort {
 
     @Override
     public VocEntity persist(VocEntity vocEntity) {
-        return vocRepository.save(vocEntity);
+        VocEntity save = vocRepository.save(vocEntity);
+        int a =1;
+        return save;
     }
 }

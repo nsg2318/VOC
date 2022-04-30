@@ -26,6 +26,7 @@ public class Supplier {
 
     public SupplierEntity toEntity() {
         return SupplierEntity.builder()
+                .id(this.id.getId())
                 .vendorName(this.vendorName)
                 .managerName(this.managerName)
                 .managerNumber(this.managerNumber)
@@ -33,6 +34,7 @@ public class Supplier {
     }
 
     @AllArgsConstructor
+    @Getter
     public static class SupplierId {
         Long id;
     }

@@ -21,16 +21,6 @@ public class Voc {
     VocStatus vocStatus;
     String reason;
 
-    public VocEntity toEntity() {
-        return VocEntity.builder()
-                .carrierEntity(carrier.toEntity())
-                .supplierEntity(supplier.toEntity())
-                .imputation(imputation)
-                .vocStatus(vocStatus)
-                .reason(reason)
-                .build();
-    }
-
     @Builder
     public Voc(VocId id, Supplier supplier, Carrier carrier, Imputation imputation, VocStatus vocStatus, String reason) {
         this.id = id;

@@ -25,7 +25,6 @@ public class VocRegistrationService implements VocRegistrationUseCase {
 
     @Override
     public VocRegistrationDto.Response registration(VocRegistrationDto.Request request) {
-        System.out.println("바로 반영됨");
         Carrier carrier = findCarrierUsePort.findById(request.getCarrierIndex());
         Supplier supplier = findSupplierPort.findById(request.getSupplierIndex());
 
@@ -38,7 +37,8 @@ public class VocRegistrationService implements VocRegistrationUseCase {
                 .supplier(supplier)
                 .build();
 
-        VocEntity persist = vocRegistrationPort.persist(voc.toEntity());
+        VocEntity vocEntity = new VocEntity(voc);
+        VocEntity persist = vocRegistrationPort.persist(vocEntity);
         return new VocRegistrationDto.Response(persist);
 
     }

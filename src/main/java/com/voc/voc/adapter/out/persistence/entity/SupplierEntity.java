@@ -29,7 +29,8 @@ public class SupplierEntity {
     private String managerNumber;
 
     @Builder
-    public SupplierEntity(String vendorName, String managerName, String managerNumber) {
+    public SupplierEntity(Long id,String vendorName, String managerName, String managerNumber) {
+        this.id = id;
         this.vendorName = vendorName;
         this.managerName = managerName;
         this.managerNumber = managerNumber;

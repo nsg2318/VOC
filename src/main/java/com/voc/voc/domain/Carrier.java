@@ -18,6 +18,7 @@ public class Carrier {
 
     public CarrierEntity toEntity(){
         return CarrierEntity.builder()
+                .id(this.id.getId())
                 .name(this.name)
                 .company(this.company)
                 .build();
@@ -30,6 +31,7 @@ public class Carrier {
     }
 
     @AllArgsConstructor
+    @Getter
     public static class CarrierId{
         Long id;
     }

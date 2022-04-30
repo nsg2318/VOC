@@ -1,6 +1,7 @@
 package com.voc.voc.adapter.out.persistence.entity;
 
 
+import com.voc.voc.adapter.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "penalty")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PenaltyEntity extends BaseTimeEntity{
+public class PenaltyEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
