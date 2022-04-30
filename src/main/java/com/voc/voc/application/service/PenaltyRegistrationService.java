@@ -25,6 +25,9 @@ public class PenaltyRegistrationService implements PenaltyRegistrationUseCase {
         Penalty penalty = Penalty.newInstance(request.getAmount(), voc);
         Penalty result = penaltyRegistrationPort.persist(penalty);
 
+        // App Push (e.g. firebase FCM)
+        // ... Logic ...
+
         return new PenaltyRegistrationDto.Response(result);
 
     }

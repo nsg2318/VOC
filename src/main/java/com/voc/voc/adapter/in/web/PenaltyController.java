@@ -2,12 +2,10 @@ package com.voc.voc.adapter.in.web;
 
 import com.voc.voc.adapter.in.web.dto.PenaltyRegistrationDto;
 import com.voc.voc.application.port.in.PenaltyRegistrationUseCase;
+import com.voc.voc.application.port.in.PenaltyUpdateUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PenaltyController {
 
     private final PenaltyRegistrationUseCase penaltyRegistrationUseCase;
+    private final PenaltyUpdateUseCase penaltyUpdateUseCase;
 
     @PostMapping
     public ResponseEntity<PenaltyRegistrationDto.Response> registration(
@@ -23,6 +22,12 @@ public class PenaltyController {
         PenaltyRegistrationDto.Response result = penaltyRegistrationUseCase.registration(request);
         return ResponseEntity.ok(result);
 
+    }
+
+    @PatchMapping("/read/{penaltyIndex}")
+    public void updateRead(
+            @PathVariable Long penaltyIndex){
+        penaltyUpdateUseCase.updateRead(penaltyIndex);
     }
 }
 

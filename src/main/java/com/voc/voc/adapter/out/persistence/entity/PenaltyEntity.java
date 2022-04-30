@@ -58,4 +58,8 @@ public class PenaltyEntity extends BaseTimeEntity {
                 vocEntity.fromThisWithCompensation()
         );
     }
+
+    public void updateRead() {
+        this.read = Boolean.TRUE;
+    }
 }
