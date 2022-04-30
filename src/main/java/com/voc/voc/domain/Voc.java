@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Value;
 
+/**
+ * VOC 도메인
+ */
 @Value
 @Getter
 @AllArgsConstructor

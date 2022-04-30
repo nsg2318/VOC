@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/voc")
-public class VocRegistrationController {
+public class VocController {
 
     private final VocRegistrationUseCase vocRegistrationUseCase;
 

@@ -1,7 +1,6 @@
 package com.voc.voc.adapter.in.web.dto;
 
 
-import com.voc.voc.adapter.out.persistence.entity.VocEntity;
 import com.voc.voc.adapter.out.persistence.status.Imputation;
 import com.voc.voc.domain.Voc;
 import lombok.AllArgsConstructor;

@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Value;
 
+/**
+ * 고객사 도메인
+ */
 @Value
 @Getter
 @AllArgsConstructor
