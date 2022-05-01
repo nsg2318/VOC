@@ -28,6 +28,8 @@ public class PenaltyRegistrationService implements PenaltyRegistrationUseCase {
         Penalty result = penaltyRegistrationPort.persist(penalty);
 
         //Voc - Penalty Update
+        Long vocIndex = request.getVocIndex();
+        int a = 1;
         Voc voc = findVocPort.findById(request.getVocIndex());
         vocUpdatePort.updatePenalty(voc, result);
 

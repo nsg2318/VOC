@@ -109,7 +109,7 @@ public class VocEntity extends BaseTimeEntity {
                 supplierEntity.fromThis(),
                 carrierEntity.fromThis(),
                 compensationEntity.fromThis(),
-                penaltyEntity.fromThis(),
+                null,
                 imputation,
                 reason,
                 claim);
