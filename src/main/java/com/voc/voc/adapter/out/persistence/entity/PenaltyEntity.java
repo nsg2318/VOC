@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "penalty")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class PenaltyEntity extends BaseTimeEntity {
+public class PenaltyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

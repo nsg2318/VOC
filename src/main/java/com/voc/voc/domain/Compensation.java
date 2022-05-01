@@ -25,9 +25,4 @@ public class Compensation {
         this.amount = amount;
         this.voc = null;
     }
-
-    public Compensation addVoc(Voc voc) {
-        this.voc = voc;
-        return this;
-    }
 }

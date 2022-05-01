@@ -105,6 +105,20 @@ public class VocEntity extends BaseTimeEntity {
                 claim);
     }
 
+    public Voc fromThisWithoutCompensation(){
+        Penalty penalty = penaltyEntity == null ? null : penaltyEntity.fromThis();
+        return new  Voc (
+                new Identity(id),
+                vocStatus ,
+                supplierEntity.fromThis(),
+                carrierEntity.fromThis(),
+                null,
+                penalty,
+                imputation,
+                reason,
+                claim);
+    }
+
     public void updateStatus(VocStatus vocStatus) {
         this.vocStatus = vocStatus;
     }

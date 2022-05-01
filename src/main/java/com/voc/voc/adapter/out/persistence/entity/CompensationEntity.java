@@ -42,8 +42,8 @@ public class CompensationEntity extends BaseTimeEntity {
         return new Compensation(new Identity(id),amount);
     }
 
-    public Compensation fromThisWithoutVoc(){
-        return new Compensation(new Identity(id), amount, null);
+    public Compensation fromThisWithoutCompensation(){
+        return new Compensation(new Identity(id),amount,vocEntity.fromThisWithoutCompensation());
     }
 
 }
