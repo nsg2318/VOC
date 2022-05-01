@@ -14,11 +14,10 @@ import lombok.Value;
 public class Compensation {
 
     Identity compensationId;
-    Voc voc;
     String amount;
 
 
-    public static Compensation newInstance(Voc voc, String amount){
-        return new Compensation(Identity.nothing(),voc,amount);
+    public static Compensation newInstance(String amount){
+        return new Compensation(Identity.nothing(),amount);
     }
 }

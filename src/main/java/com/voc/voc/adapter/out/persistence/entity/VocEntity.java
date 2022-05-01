@@ -90,31 +90,6 @@ public class VocEntity extends BaseTimeEntity {
         this.penaltyEntity = PenaltyEntity.from(penalty);
     }
 
-    public Voc fromThisWithoutCompensation() {
-        return new Voc(
-                new Identity(id),
-                vocStatus,
-                supplierEntity.fromThis(),
-                carrierEntity.fromThis(),
-                null, null,
-                imputation,
-                reason,
-                claim);
-    }
-
-    public Voc fromThisWithCompensation() {
-        return new Voc(
-                new Identity(id),
-                vocStatus,
-                supplierEntity.fromThis(),
-                carrierEntity.fromThis(),
-                compensationEntity.fromThis(),
-                null,
-                imputation,
-                reason,
-                claim);
-    }
-
     public Voc fromThis() {
         Compensation compensation = compensationEntity == null ? null : compensationEntity.fromThis();
         Penalty penalty = penaltyEntity == null ? null : penaltyEntity.fromThis();

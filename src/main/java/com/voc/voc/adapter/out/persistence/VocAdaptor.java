@@ -26,21 +26,21 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
     @Override
     public Voc persist(Voc voc) {
         VocEntity save = vocRepository.save(VocEntity.fromWithoutCompensation(voc));
-        return save.fromThisWithoutCompensation();
+        return save.fromThis();
     }
 
     @Override
     public Voc findById(Long id) {
         VocEntity vocEntity = vocRepository.findById(id)
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
-        return vocEntity.getCompensationEntity() == null ? vocEntity.fromThisWithoutCompensation() : vocEntity.fromThisWithCompensation();
+        return vocEntity.fromThis();
     }
 
     @Override
     public Voc findByPenaltyId(Long id) {
         VocEntity vocEntity = vocRepository.findByPenaltyEntityId(id)
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
-        return vocEntity.fromThisWithCompensation();
+        return vocEntity.fromThis();
     }
 
     @Override
