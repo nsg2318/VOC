@@ -1,14 +1,13 @@
 package com.voc.voc.adapter.in.web;
 
 
+import com.voc.voc.adapter.in.web.dto.VocGetAllDto;
 import com.voc.voc.adapter.in.web.dto.VocRegistrationDto;
+import com.voc.voc.application.port.in.VocGetAllUseCase;
 import com.voc.voc.application.port.in.VocRegistrationUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VocController {
 
     private final VocRegistrationUseCase vocRegistrationUseCase;
+    private final VocGetAllUseCase vocGetAllUseCase;
 
     @PostMapping
     public ResponseEntity<VocRegistrationDto.Response> registration(
@@ -24,4 +24,9 @@ public class VocController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping
+    public ResponseEntity<VocGetAllDto.Response> getAllVoc(){
+        VocGetAllDto.Response result = vocGetAllUseCase.getAll();
+        return ResponseEntity.ok(result);
+    }
 }

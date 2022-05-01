@@ -53,3 +53,4 @@ public class PenaltyController {
 // TODO: 2022/05/01 소스내 주석
 // TODO: 2022/05/01 Readme, 다이어그램, ERD 작성 및 캡처
 // TODO: 2022/05/01 fromwithout 메서드 이름 변경
+// TODO: 2022/05/01 NPE 방지를 위한 모든 작업 

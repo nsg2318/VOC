@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.InvalidParameterException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -60,5 +62,11 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
         VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
         vocEntity.updateStatus(vocStatus);
+    }
+
+    @Override
+    public List<Voc> findAll() {
+        List<VocEntity> vocEntityList = vocRepository.findAll();
+        return vocEntityList.stream().map(VocEntity::fromThis).collect(Collectors.toList());
     }
 }
