@@ -25,6 +25,12 @@ public class PenaltyController {
 
     }
 
+    @PatchMapping("/read/{penaltyIndex}")
+    public void updateRead(
+            @PathVariable Long penaltyIndex) {
+        penaltyUpdateUseCase.updateRead(penaltyIndex);
+    }
+
     @PostMapping("/objection/{penaltyIndex}")
     public void objectionRequest(
             @PathVariable Long penaltyIndex,
@@ -32,11 +38,6 @@ public class PenaltyController {
         penaltyUpdateUseCase.updateObjection(penaltyIndex, request);
     }
 
-    @PatchMapping("/read/{penaltyIndex}")
-    public void updateRead(
-            @PathVariable Long penaltyIndex) {
-        penaltyUpdateUseCase.updateRead(penaltyIndex);
-    }
 
     @PatchMapping("/objection/{penaltyIndex}")
     public void agreeFault(
@@ -51,3 +52,4 @@ public class PenaltyController {
 // TODO: 2022/05/01 남은 기능구현
 // TODO: 2022/05/01 소스내 주석
 // TODO: 2022/05/01 Readme, 다이어그램, ERD 작성 및 캡처
+// TODO: 2022/05/01 fromwithout 메서드 이름 변경

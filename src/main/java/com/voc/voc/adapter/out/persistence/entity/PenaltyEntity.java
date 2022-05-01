@@ -33,10 +33,6 @@ public class PenaltyEntity extends BaseTimeEntity {
     @NotNull
     private String objectionReason;
 
-    @OneToOne
-    @JoinColumn(name = "voc")
-    private VocEntity vocEntity;
-
     public static PenaltyEntity from(Penalty penalty) {
 
         return new PenaltyEntity(
@@ -44,8 +40,7 @@ public class PenaltyEntity extends BaseTimeEntity {
                 penalty.getAmount(),
                 penalty.getRead(),
                 penalty.getObjection(),
-                penalty.getObjectionReason(),
-                VocEntity.fromWithCompensation(penalty.getVoc(), penalty.getVoc().getCompensation()));
+                penalty.getObjectionReason());
     }
 
     public Penalty fromThis() {
@@ -54,8 +49,7 @@ public class PenaltyEntity extends BaseTimeEntity {
                 amount,
                 read,
                 objection,
-                objectionReason,
-                vocEntity.fromThisWithCompensation()
+                objectionReason
         );
     }
 

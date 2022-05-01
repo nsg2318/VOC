@@ -20,6 +20,7 @@ public class Voc {
     Supplier supplier;
     Carrier carrier;
     Compensation compensation;
+    Penalty penalty;
     Imputation imputation;
     String reason;
     Boolean claim;
@@ -32,7 +33,7 @@ public class Voc {
     }
 
     public static Voc newInstance(Supplier supplier, Carrier carrier, Imputation imputation, String reason, Boolean claim) {
-        return new Voc(Identity.nothing(), VocStatus.CLOSED, supplier, carrier, null, imputation, reason, claim);
+        return new Voc(Identity.nothing(), VocStatus.CLOSED, supplier, carrier, null, null, imputation, reason, claim);
     }
 
 }

@@ -6,6 +6,7 @@ import com.voc.voc.application.port.out.FindVocPort;
 import com.voc.voc.application.port.out.VocRegistrationPort;
 import com.voc.voc.application.port.out.VocUpdatePort;
 import com.voc.voc.domain.Compensation;
+import com.voc.voc.domain.Penalty;
 import com.voc.voc.domain.Voc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,13 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
     }
 
     @Override
+    public Voc findByPenaltyId(Long id) {
+        VocEntity vocEntity = vocRepository.findByPenaltyEntityId(id)
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        return vocEntity.fromThisWithCompensation();
+    }
+
+    @Override
     public void updateCompensation(Voc voc, Compensation compensation) {
         VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
@@ -41,7 +49,14 @@ public class VocAdaptor implements VocRegistrationPort, FindVocPort, VocUpdatePo
     }
 
     @Override
-    public void updateStatus(Voc voc,VocStatus vocStatus) {
+    public void updatePenalty(Voc voc, Penalty penalty) {
+        VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
+        vocEntity.updatePenalty(penalty);
+    }
+
+    @Override
+    public void updateStatus(Voc voc, VocStatus vocStatus) {
         VocEntity vocEntity = vocRepository.findById(voc.getVocId().getNumber())
                 .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
         vocEntity.updateStatus(vocStatus);

@@ -6,6 +6,7 @@ import com.voc.voc.adapter.out.persistence.status.Imputation;
 import com.voc.voc.adapter.out.persistence.status.VocStatus;
 import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Identity;
+import com.voc.voc.domain.Penalty;
 import com.voc.voc.domain.Voc;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import static com.voc.voc.adapter.out.persistence.entity.IdConverter.*;
+import static com.voc.voc.adapter.out.persistence.entity.IdConverter.convertId;
 
 @Entity
 @Table(name = "voc")
@@ -45,6 +46,10 @@ public class VocEntity extends BaseTimeEntity {
     @JoinColumn(name = "compensation")
     private CompensationEntity compensationEntity;
 
+    @OneToOne
+    @JoinColumn(name = "penalty")
+    private PenaltyEntity penaltyEntity;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Imputation imputation;
@@ -60,24 +65,29 @@ public class VocEntity extends BaseTimeEntity {
         return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
                 SupplierEntity.from(voc.getSupplier()),
                 CarrierEntity.from(voc.getCarrier()),
-                null,
+                null, null,
                 voc.getImputation(),
                 voc.getReason(),
                 voc.getClaim());
     }
 
-    public static VocEntity fromWithCompensation(Voc voc, Compensation compensation){
+    public static VocEntity fromWithCompensation(Voc voc, Compensation compensation, Penalty penalty) {
         return new VocEntity(convertId(voc.getVocId()), voc.getVocStatus(),
                 SupplierEntity.from(voc.getSupplier()),
                 CarrierEntity.from(voc.getCarrier()),
                 CompensationEntity.from(compensation),
+                PenaltyEntity.from(penalty),
                 voc.getImputation(),
                 voc.getReason(),
                 voc.getClaim());
     }
 
-    public void updateCompensation(Compensation compensation){
+    public void updateCompensation(Compensation compensation) {
         this.compensationEntity = CompensationEntity.from(compensation);
+    }
+
+    public void updatePenalty(Penalty penalty) {
+        this.penaltyEntity = PenaltyEntity.from(penalty);
     }
 
     public Voc fromThisWithoutCompensation() {
@@ -86,7 +96,7 @@ public class VocEntity extends BaseTimeEntity {
                 vocStatus,
                 supplierEntity.fromThis(),
                 carrierEntity.fromThis(),
-                null,
+                null, null,
                 imputation,
                 reason,
                 claim);
@@ -99,6 +109,7 @@ public class VocEntity extends BaseTimeEntity {
                 supplierEntity.fromThis(),
                 carrierEntity.fromThis(),
                 compensationEntity.fromThis(),
+                penaltyEntity.fromThis(),
                 imputation,
                 reason,
                 claim);
