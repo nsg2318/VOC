@@ -8,6 +8,9 @@ spring data JPA
 H2 Database
 ```
 
+##ERD
+![image](https://user-images.githubusercontent.com/74886848/166135133-39622a30-3d0e-4b28-92d6-be75f90843db.png)
+
 ## REST-Api
 ```
 BaseUri : http://localhost:8080
