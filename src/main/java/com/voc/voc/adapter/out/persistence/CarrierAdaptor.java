@@ -6,6 +6,8 @@ import com.voc.voc.domain.Carrier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.security.InvalidParameterException;
+
 @Component
 @RequiredArgsConstructor
 public class CarrierAdaptor implements FindCarrierPort {
@@ -16,7 +18,7 @@ public class CarrierAdaptor implements FindCarrierPort {
     public Carrier findById(Long id) {
 
         CarrierEntity carrierEntity = carrierRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Can not find data"));
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
         return new Carrier(carrierEntity);
 
     }

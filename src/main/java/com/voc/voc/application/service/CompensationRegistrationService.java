@@ -25,6 +25,10 @@ public class CompensationRegistrationService implements CompensationRegistration
     public CompensationRegistrationDto.Response registration(CompensationRegistrationDto.Request request) {
         Voc voc = findVocPort.findById(request.getVocIndex());
 
+        if(!(voc.getCompensation() == null)){
+            throw new IllegalArgumentException("Compensation Already Exists");
+        }
+
         Compensation compensation = Compensation.newInstance(request.getAmount(),voc);
         Compensation result = compensationRegistrationPort.persist(compensation);
 

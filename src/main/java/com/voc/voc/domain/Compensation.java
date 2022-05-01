@@ -3,7 +3,6 @@ package com.voc.voc.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Value;
 
 /**
  * 배상 도메인
@@ -17,8 +16,8 @@ public class Compensation {
     private Voc voc;
 
 
-    public static Compensation newInstance(String amount, Voc voc){
-        return new Compensation(Identity.nothing(),amount,voc);
+    public static Compensation newInstance(String amount, Voc voc) {
+        return new Compensation(Identity.nothing(), amount, voc);
     }
 
     public Compensation(Identity compensationId, String amount) {

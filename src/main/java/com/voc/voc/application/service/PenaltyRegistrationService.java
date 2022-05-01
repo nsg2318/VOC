@@ -23,12 +23,15 @@ public class PenaltyRegistrationService implements PenaltyRegistrationUseCase {
 
     @Override
     public PenaltyRegistrationDto.Response registration(PenaltyRegistrationDto.Request request) {
+        Voc voc = findVocPort.findById(request.getVocIndex());
+        if(!(voc.getPenalty() == null)){
+            throw new IllegalArgumentException("Penalty Already Exists");
+        }
 
         Penalty penalty = Penalty.newInstance(request.getAmount());
         Penalty result = penaltyRegistrationPort.persist(penalty);
 
         //Voc - Penalty Update
-        Voc voc = findVocPort.findById(request.getVocIndex());
         vocUpdatePort.updatePenalty(voc, result);
 
         // App Push (e.g. firebase FCM)

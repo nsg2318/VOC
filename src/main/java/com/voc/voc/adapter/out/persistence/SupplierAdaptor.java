@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.InvalidParameterException;
+
 @Component
 @RequiredArgsConstructor
-@Transactional
 public class SupplierAdaptor implements FindSupplierPort {
 
     private final SupplierRepository supplierRepository;
@@ -18,7 +19,7 @@ public class SupplierAdaptor implements FindSupplierPort {
     public Supplier findById(Long id) {
 
         SupplierEntity supplierEntity = supplierRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Can not find data"));
+                .orElseThrow(() -> new InvalidParameterException("Invalid Index"));
         return new Supplier(supplierEntity);
     }
 }
