@@ -3,6 +3,7 @@ package com.voc.voc.adapter.out.persistence.entity;
 import com.voc.voc.adapter.BaseTimeEntity;
 import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Identity;
+import com.voc.voc.domain.Voc;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +39,11 @@ public class CompensationEntity extends BaseTimeEntity {
     }
 
     public Compensation fromThis() {
-        return new Compensation(new Identity(id), amount);
+        return new Compensation(new Identity(id),amount);
+    }
+
+    public Compensation fromThisWithoutVoc(){
+        return new Compensation(new Identity(id), amount, null);
     }
 
 }

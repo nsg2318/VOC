@@ -8,16 +8,27 @@ import lombok.Value;
 /**
  * 배상 도메인
  */
-@Value
 @Getter
 @AllArgsConstructor
 public class Compensation {
 
-    Identity compensationId;
-    String amount;
+    private final Identity compensationId;
+    private final String amount;
+    private Voc voc;
 
 
-    public static Compensation newInstance(String amount){
-        return new Compensation(Identity.nothing(),amount);
+    public static Compensation newInstance(String amount, Voc voc){
+        return new Compensation(Identity.nothing(),amount,voc);
+    }
+
+    public Compensation(Identity compensationId, String amount) {
+        this.compensationId = compensationId;
+        this.amount = amount;
+        this.voc = null;
+    }
+
+    public Compensation addVoc(Voc voc) {
+        this.voc = voc;
+        return this;
     }
 }

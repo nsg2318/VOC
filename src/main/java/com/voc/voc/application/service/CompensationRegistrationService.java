@@ -25,7 +25,7 @@ public class CompensationRegistrationService implements CompensationRegistration
     public CompensationRegistrationDto.Response registration(CompensationRegistrationDto.Request request) {
         Voc voc = findVocPort.findById(request.getVocIndex());
 
-        Compensation compensation = Compensation.newInstance(request.getAmount());
+        Compensation compensation = Compensation.newInstance(request.getAmount(),voc);
         Compensation result = compensationRegistrationPort.persist(compensation);
 
         //Voc 내 Compensation 정보 업데이트
