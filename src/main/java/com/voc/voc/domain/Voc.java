@@ -24,13 +24,6 @@ public class Voc {
     String reason;
     Boolean claim;
 
-
-    @AllArgsConstructor
-    @Getter
-    public static class VocId {
-        Long id;
-    }
-
     public static Voc newInstance(Supplier supplier, Carrier carrier, Imputation imputation, String reason, Boolean claim) {
         return new Voc(Identity.nothing(), VocStatus.CLOSED, supplier, carrier, null, null, imputation, reason, claim);
     }
