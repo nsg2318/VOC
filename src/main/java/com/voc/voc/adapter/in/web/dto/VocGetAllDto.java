@@ -11,6 +11,7 @@ public class VocGetAllDto {
     @Getter
     @AllArgsConstructor
     public static class Response {
+        // TODO: 2022/05/09 Voc -> Custom Response
         List<Voc> vocList;
     }
 }
