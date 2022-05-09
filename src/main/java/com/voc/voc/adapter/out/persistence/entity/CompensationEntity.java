@@ -3,8 +3,8 @@ package com.voc.voc.adapter.out.persistence.entity;
 import com.voc.voc.adapter.BaseTimeEntity;
 import com.voc.voc.domain.Compensation;
 import com.voc.voc.domain.Identity;
-import com.voc.voc.domain.Voc;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,33 +17,30 @@ import static com.voc.voc.adapter.out.persistence.entity.IdConverter.convertId;
 @Table(name = "compensation")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class CompensationEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "compensationEntity")
+    @OneToOne
+    @JoinColumn(name = "voc")
     private VocEntity vocEntity;
 
     @NotNull
     String amount;
 
-    public CompensationEntity(Long id, String amount) {
-        this.id = id;
-        this.amount = amount;
-    }
-
     public static CompensationEntity from(Compensation compensation) {
-        return new CompensationEntity(convertId(compensation.getCompensationId()), compensation.getAmount());
+        return new CompensationEntity(convertId(compensation.getCompensationId()), VocEntity.fromWithCompensation(compensation.getVoc()), compensation.getAmount());
     }
 
     public Compensation fromThis() {
-        return new Compensation(new Identity(id),amount);
+        return new Compensation(new Identity(id), amount, vocEntity.fromThis());
     }
 
-    public Compensation fromThisWithoutCompensation(){
-        return new Compensation(new Identity(id),amount,vocEntity.fromThisWithoutCompensation());
+    public Compensation fromThisWithoutCompensation() {
+        return new Compensation(new Identity(id), amount, vocEntity.fromThisWithoutCompensation());
     }
 
 }

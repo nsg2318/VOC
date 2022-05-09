@@ -19,9 +19,10 @@ public class Penalty {
     Boolean read;
     Boolean objection;
     String objectionReason;
+    Voc voc;
 
-    public static Penalty newInstance(String amount) {
-        return new Penalty(Identity.nothing(), amount, false, false, "");
+    public static Penalty newInstance(Voc voc,String amount) {
+        return new Penalty(Identity.nothing(), amount, false, false, "",voc);
     }
 
 

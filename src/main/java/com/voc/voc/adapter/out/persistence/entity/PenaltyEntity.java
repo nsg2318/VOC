@@ -1,7 +1,6 @@
 package com.voc.voc.adapter.out.persistence.entity;
 
 
-import com.voc.voc.adapter.BaseTimeEntity;
 import com.voc.voc.domain.Identity;
 import com.voc.voc.domain.Penalty;
 import lombok.AccessLevel;
@@ -33,23 +32,29 @@ public class PenaltyEntity {
     @NotNull
     private String objectionReason;
 
+    @OneToOne
+    @JoinColumn(name = "voc")
+    private VocEntity vocEntity;
+
     public static PenaltyEntity from(Penalty penalty) {
 
         return new PenaltyEntity(
-                IdConverter.convertId(penalty.getPenaltyId()),
-                penalty.getAmount(),
-                penalty.getRead(),
-                penalty.getObjection(),
-                penalty.getObjectionReason());
+            IdConverter.convertId(penalty.getPenaltyId()),
+            penalty.getAmount(),
+            penalty.getRead(),
+            penalty.getObjection(),
+            penalty.getObjectionReason(),VocEntity.fromWithCompensation(penalty.getVoc())
+        );
     }
 
     public Penalty fromThis() {
         return new Penalty(
-                new Identity(id),
-                amount,
-                read,
-                objection,
-                objectionReason
+            new Identity(id),
+            amount,
+            read,
+            objection,
+            objectionReason,
+            vocEntity.fromThis()
         );
     }
 

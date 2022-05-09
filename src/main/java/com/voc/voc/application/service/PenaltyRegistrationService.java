@@ -24,11 +24,10 @@ public class PenaltyRegistrationService implements PenaltyRegistrationUseCase {
     @Override
     public PenaltyRegistrationDto.Response registration(PenaltyRegistrationDto.Request request) {
         Voc voc = findVocPort.findById(request.getVocIndex());
-        if(!(voc.getPenalty() == null)){
-            throw new IllegalArgumentException("Penalty Already Exists");
-        }
 
-        Penalty penalty = Penalty.newInstance(request.getAmount());
+        // TODO: 2022/05/09 기맵핑 VOC 검증
+
+        Penalty penalty = Penalty.newInstance(voc,request.getAmount());
         Penalty result = penaltyRegistrationPort.persist(penalty);
 
         //Voc - Penalty Update
